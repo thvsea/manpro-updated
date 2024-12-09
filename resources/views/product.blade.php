@@ -25,18 +25,7 @@
         <div class="lg:w-1/2">
             <h1 class="text-3xl font-bold mb-2" id="product-name">{{ $produk->nama_produk }}</h1>
             <p id="product-price" class="text-lg text-gray-600 mb-4">Rp. {{ number_format($produk->harga, 0, ',', '.') }}</p>
-            
-            <!-- Star Ratings -->
-            <div class="flex items-center mb-4">
-                <div class="text-yellow-500 space-x-1">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="ml-2 text-sm text-gray-500">(5 customer reviews)</p>
-            </div>
+            <p id="product-stok" class="text-lg text-gray-600 mb-4"> Stok: {{ number_format($produk->stok) }}</p>
 
             <!-- Merk and Jenis -->
             <form id="addToCartForm" action="{{ route('cart.add', ['id' => $produk->id_produk]) }}" method="POST">
@@ -68,7 +57,7 @@
                 
                 <!-- Quantity Input -->
                 <div class="flex items-center mb-6">
-                    <label for="quantity" class="sr-only">Quantity</label>
+                    <label for="quantity" class="block text-sm font-medium">Quantity: </label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" class="w-16 border text-center rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 
@@ -98,6 +87,7 @@
     
     $(document).ready(function() {
         const $priceElement = $('#product-price');
+        const $stokElement = $('#product-stok');
         // Update the form's quantity value when the user changes the quantity input field
         $('#quantity').on('input', function() {
             var quantity = $(this).val();
@@ -114,21 +104,25 @@
 
             for (const x of jenisForMerk) {
                 $('#jenis').append(`
-                    <option value="${x.jenis}" data-price="${x.harga}">${x.jenis}</option>
+                    <option value="${x.jenis}" data-price="${x.harga}" data-stok="${x.stok}">${x.jenis}</option>
                 `);
             }
 
             const firstJenis = $('#jenis option').first();
             const price = firstJenis.data('price');
+            const stok = firstJenis.data('stok');
             $('#jenis').val(firstJenis.val()); // Set the first jenis as selected
             $priceElement.text(`Rp. ${new Intl.NumberFormat('id-ID').format(price)}`); 
+            $stokElement.text(`Stock: ${stok}`);
 
         });
 
         $('#jenis').on('change', function() {
             const selectedOption = $(this).find(':selected');
             const price = selectedOption.data('price');
+            const stok = selectedOption.data('stok');
             $priceElement.text(`Rp. ${new Intl.NumberFormat('id-ID').format(price)}`);
+            $stokElement.text(`Stock: ${stok}`);
         });
     });
 </script>

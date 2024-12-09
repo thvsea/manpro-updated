@@ -58,6 +58,11 @@
             <input type="text" name="image_url" value="" class="w-full p-2 border rounded">
         </div>
 
+        <div class="mb-4">
+            <label for="stok" class="block">Stok</label>
+            <input type="number" name="stok" value="" class="w-full p-2 border rounded">
+        </div>
+
         <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded">Add Product</button>
     </form>
 </div>

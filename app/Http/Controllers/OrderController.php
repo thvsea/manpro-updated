@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Produk;
 use App\Models\OrderProduk;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,12 @@ class OrderController extends Controller
                 'id_produk' => $item->product_id, // Assuming 'id_produk' is in the Cart table
                 'jumlah' => $item->quantity, // Quantity from the cart
             ]);
+
+            $produk = Produk::find($item->product_id); // Assuming Produk is the model for your products
+            if ($produk) {
+                $produk->stok -= $item->quantity;
+                $produk->save();
+            }
         }
 
         // After inserting, delete the cart items

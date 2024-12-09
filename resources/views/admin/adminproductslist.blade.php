@@ -29,6 +29,7 @@
                             <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Merk</th>
                             <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Jenis</th>
                             <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Image URL</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Stok</th>
                             <th class="px-6 py-3 text-sm font-semibold text-left text-gray-700 border-b">Actions</th>
                         </tr>
                     </thead>
@@ -42,6 +43,7 @@
                             <td class="px-6 py-4 text-sm">
                                 <a href="{{ $product->image }}" class="text-blue-500 hover:underline" target="_blank">View Image</a>
                             </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">{{ $product->stok }}</td>
                             <td class="px-6 py-4 text-sm">
                                 <a href="{{ route('admin.product.edit', $product->id_produk) }}" class="px-2 py-1 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600">Edit</a>
                                 <form action="{{ route('admin.product.delete', $product->id_produk) }}" method="POST" class="inline">

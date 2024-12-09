@@ -101,6 +101,7 @@ class AdminController extends Controller
         $product->merk = $request->merk;
         $product->jenis = $request->jenis;
         $product->image = $request->image_url;
+        $product->stok = $request->stok;
         
         $product->save();
         return redirect()->route('admin.products')->with('success', 'Product added successfully');
@@ -116,6 +117,7 @@ class AdminController extends Controller
         $product->merk = $request->input('merk');
         $product->jenis = $request->input('jenis');
         $product->image = $request->input('image_url');
+        $product->stok = $request->input('stok');
 
         // Save the updated product
         $product->save();

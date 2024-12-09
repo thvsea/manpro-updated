@@ -32,6 +32,11 @@
             <input type="text" name="image_url" value="{{ $product->image }}" class="w-full border p-2 rounded">
         </div>
 
+        <div class="mb-4">
+            <label for="price" class="block">Stok</label>
+            <input type="number" name="stok" value="{{ $product->stok }}" class="w-full border p-2 rounded">
+        </div>
+
         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Save Changes</button>
     </form>
 </div>

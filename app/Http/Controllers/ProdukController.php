@@ -83,7 +83,7 @@ class ProdukController extends Controller
         $produkByMerk = Produk::query()
             ->where('nama_produk', $produk->nama_produk)
             ->get()
-            ->map(fn($item) => ['merk' => $item->merk, 'jenis' => $item->jenis, 'harga' => $item->harga])
+            ->map(fn($item) => ['merk' => $item->merk, 'jenis' => $item->jenis, 'harga' => $item->harga, 'stok' => $item->stok])
             ->groupBy(fn($item) => $item['merk']);
 
         // Pass the product, merk, and jenis to the view
@@ -111,6 +111,7 @@ class ProdukController extends Controller
             'id' => $produk->id_produk,
             'nama_produk' => $produk->nama_produk,
             'harga' => $produk->harga,
+            'stok' => $produk->stok,
             // Include any other product details you need
         ]);
     }
