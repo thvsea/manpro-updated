@@ -106,10 +106,6 @@ public function submitPaymentProof(Request $request, $orderId)
         $order->save();  // Save the order with the updated information
     }
 
-    //to display the payment proof stored idfk
-    // <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Payment Proof">
-
-    // Redirect to the orders list page with a success message
     return redirect()->route('orders.view')->with('success', 'Payment proof uploaded successfully!');
 }
 
